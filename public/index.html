@@ -1,0 +1,127 @@
+<head>
+  <title>Python Weather App</title>
+  <!-- JQuery for Bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <!-- Popper for Bootstrap-->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS and JS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"
+    data-main="js/index"></script>
+  <!-- Custom Stylesheet-->
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <!-- Require.JS for compiled typescript module loading-->
+  <script src="js/require.js" data-main="js/index"></script>
+  <!-- Index JS file -->
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <div id="temp"></div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Python Weather App</a>
+    <div class="form-inline my-2 my-lg-0" style="margin-left: auto;">
+      <input class="form-control mr-sm-2" type="number" min="0" max="99999" id="zipcode-search" placeholder="ZipCode"
+        aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick="handleZipcodeSearch()">Search</button>
+    </div>
+  </nav>
+
+  <!-- City Name -->
+  <h2 id="city-name"></h2>
+
+  <!-- Loading-->
+  <div id="loading" style="display: none;">LOADING...</div>
+
+  <!-- Main Content Wapper - for centering elements-->
+  <div class="content-wrapper">
+
+    <!-- Weather Display -->
+    <div id="weather-wrapper" style="display: none;">
+
+      <!-- Weather Card -->
+      <div id="weather-card" class="card">
+        <span class="card-body">
+          <h5 class="card-title">
+            <div class="d-flex justify-content-center" style="align-items: center;">
+              <span>Temperature</span>
+              <img id="weather-icon" src="" style="width: 60px; margin-left: auto;" />
+            </div>
+          </h5>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="label">Temp</span>
+              <span id="current-temp" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Feels Like</span>
+              <span id="feels-temp" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Max Temp</span>
+              <span id="max-temp" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Min Temp</span>
+              <span id="min-temp" class="data"></span>
+            </li>
+          </ul>
+
+        </span>
+      </div>
+
+      <!-- Other Info Card -->
+      <div id="wind-air-card" class="card">
+        <span class="card-body">
+          <h5 class="card-title">
+            <div class="d-flex justify-content-center" style="align-items: center;">
+              <span>Wind and Air Conditions</span>
+            </div>
+          </h5>
+
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="label">Speed</span>
+              <span id="wind-speed" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Direction</span>
+              <span id="wind-deg" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Gust</span>
+              <span id="wind-gust" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Humidity</span>
+              <span id="humidity" class="data"></span>
+            </li>
+            <li class="list-group-item">
+              <span class="label">Pressure</span>
+              <span id="pressure" class="data"></span>
+            </li>
+          </ul>
+
+        </span>
+      </div>
+    </div>
+
+    <!-- Location Failed Card-->
+    <div id="location-failed" style="display: none">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Location Access Denied!</h5>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+          <p class="card-text">Please allow location or enter zipcode mannually.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
